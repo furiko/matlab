@@ -36,6 +36,8 @@ def main():
 			res = kentokai(week_num=s, start_day=start_day, skip_dict=skip_dict)
 		for x in res:
 			print(x)
+
+		write_to_file(res)
 	elif s == "2":
 		matsuo()
 
@@ -108,6 +110,12 @@ def get_next_held_day(day, skip_dict):
 
 def debug_date(day1, day2, day3):
 	print("day1:", day1, " day2:", day2, " day3:", day3)
+
+
+def write_to_file(lines):
+	with open("./table.txt", "w") as f:
+		for line in lines:
+			f.write(line+"\n")
 
 if __name__ == '__main__':
 	main()
