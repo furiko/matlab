@@ -20,7 +20,11 @@ def main():
 		skip_day = "1990/01/01"
 		skip_dict = {}
 		i = 0
-		while skip_day != "":
+		print("スキップする日付をまとめたファイルがあればパスを入れてください：", end="")
+		skip_file = input()
+		if skip_file != "":
+			skip_dict = read_file(skip_file)
+		while skip_day != "" or skip_day == "n":
 			if i == 0:
 				print("開催しない日はありますか？", end="")
 			else:
@@ -116,6 +120,15 @@ def write_to_file(lines):
 	with open("./table.txt", "w") as f:
 		for line in lines:
 			f.write(line+"\n")
+
+
+def read_file(path):
+	with open(path, "r") as f:
+		lines = f.readlines()
+	res = {}
+	for line in lines:
+		res[line.strip("\n")] = True
+	return res
 
 if __name__ == '__main__':
 	main()
